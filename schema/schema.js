@@ -23,7 +23,7 @@ const {
 // ];
 
 // const authors = [
-//   { name: 'Patrick Rothfuss', age: 44, id: '1' },
+//   { name: 'Patrick Rothfuss', age: 44, id: '1' }, //  
 //   { name: 'Brandon Sanderson', age: 42, id: '2' },
 //   { name: 'Terry Prachett', age: 66, id: '3' },
 // ];
@@ -116,6 +116,22 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         let author = new Author({ name: args.name, age: args.age });
         return author.save();
+      },
+    },
+    addBook: {
+      type: BookType,
+      args: {
+        name: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        authorId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let book = new Book({
+          name: args.name,
+          genre: args.genre,
+          author: args.authorId,
+        });
+        return book.save();
       },
     },
   },
