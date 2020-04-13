@@ -22,9 +22,9 @@ const BookList = ({ data: { loading, books } }) => {
   };
 
   return (
-    <div id='book-list'>
+    <div>
       <h2>Reading List</h2>
-      <ul>{displayBooks()}</ul>
+      <ul id='book-list'>{displayBooks()}</ul>
       <BookDetails id={selectedBook} />
     </div>
   );
