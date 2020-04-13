@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-
-const getAuthorsQuery = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`;
+import { getAuthorsQuery } from '../queries/queries';
 
 const AddBook = ({ data: { loading, authors } }) => {
   const displayAuthors = () => {
     if (loading) {
       return <option disabled>Loading Authors...</option>;
     } else {
-      return authors.map((author) => (
-        <option value={author.id}>{author.name}</option>
-      ));
+      return (
+        authors &&
+        authors.map((author) => (
+          <option value={author.id}>{author.name}</option>
+        ))
+      );
     }
   };
   return (

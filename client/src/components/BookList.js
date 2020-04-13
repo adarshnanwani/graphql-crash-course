@@ -1,16 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
-
-const getBooksQuery = gql`
-  {
-    books {
-      name
-      id
-    }
-  }
-`;
+import { getBooksQuery } from '../queries/queries';
 
 const BookList = ({ data: { loading, books } }) => {
   const displayBooks = () => {
@@ -28,7 +18,5 @@ const BookList = ({ data: { loading, books } }) => {
     </div>
   );
 };
-
-BookList.propTypes = {};
 
 export default graphql(getBooksQuery)(BookList);
